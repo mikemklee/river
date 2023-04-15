@@ -6,7 +6,7 @@
 	const initialNodes: UserNodeType[] = [
 		{
 			id: 1,
-			position: { x: 200, y: 50 },
+			position: { x: 0, y: 0 },
 			data: { label: 'Input Node' },
 			width: 175,
 			height: 40,
@@ -14,7 +14,7 @@
 		},
 		{
 			id: 2,
-			position: { x: 25, y: 150 },
+			position: { x: 10, y: 10 },
 			data: { label: 'Option #1' },
 			width: 175,
 			height: 40,
@@ -23,7 +23,7 @@
 		},
 		{
 			id: 3,
-			position: { x: 375, y: 150 },
+			position: { x: 20, y: 20 },
 			data: { label: 'Option #2' },
 			width: 175,
 			height: 40,
