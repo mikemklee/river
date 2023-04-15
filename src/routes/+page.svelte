@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 
 	import Svelvet from 'svelvet';
 	import type { UserNodeType, UserEdgeType } from 'svelvet';
@@ -39,20 +39,13 @@
 	let container;
 	let containerWidth = 0;
 	let containerHeight = 0;
-
-	$: {
-		containerWidth && containerHeight && dispatchResizeEvent();
-	}
+	let isInitialized = false;
 
 	function updateContainerSize() {
 		containerWidth = container.clientWidth;
 		containerHeight = container.clientHeight;
+		isInitialized = true;
 		console.log(containerWidth, containerHeight);
-	}
-
-	function dispatchResizeEvent() {
-		const resizeEvent = new Event('resize');
-		window.dispatchEvent(resizeEvent);
 	}
 
 	onMount(() => {
@@ -66,12 +59,13 @@
 </script>
 
 <div class="w-full h-full" bind:this={container}>
-	<Svelvet
-		width={containerWidth}
-		height={containerHeight}
-		nodes={initialNodes}
-		edges={initialEdges}
-		initialLocation={{ x: 375, y: 300 }}
-		background
-	/>
+	{#if isInitialized}
+		<Svelvet
+			width={containerWidth}
+			height={containerHeight}
+			nodes={initialNodes}
+			edges={initialEdges}
+			background
+		/>
+	{/if}
 </div>
